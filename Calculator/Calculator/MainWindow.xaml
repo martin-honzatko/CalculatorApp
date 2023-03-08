@@ -1,0 +1,77 @@
+﻿<Window x:Class="Calculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator"
+        xmlns:vm="clr-namespace:Calculator.VMs"
+        mc:Ignorable="d"
+        Title="Calculator" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainVM />
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="OperationButton">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Gray" Offset="0" />
+                        <GradientStop Color="DarkGray" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style TargetType="Button" x:Key="NormalButton">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="DarkGray" Offset="0" />
+                        <GradientStop Color="Black" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Content="7" Grid.Row="1" Command="{Binding Number}" CommandParameter="7" Style="{StaticResource NormalButton}" />
+        <Button Content="8" Grid.Row="1" Grid.Column="1" Command="{Binding Number}" CommandParameter="8" Style="{StaticResource NormalButton}" />
+        <Button Content="9" Grid.Row="1" Grid.Column="2" Command="{Binding Number}" CommandParameter="9" Style="{StaticResource NormalButton}"/>
+        <Button Content="+" Grid.Row="1" Grid.Column="3" Command="{Binding Operation}" CommandParameter="+" Style="{StaticResource OperationButton}" />
+        <Button Content="x!" Grid.Row="1" Grid.Column="4" Command="{Binding Operation}" CommandParameter="x!" Style="{StaticResource OperationButton}" />
+        <Button Content="x^y" Grid.Row="2" Grid.Column="4" Command="{Binding Operation}" CommandParameter="x^y" Style="{StaticResource OperationButton}" />
+        <Button Content="sin(x)" Grid.Row="4" Grid.Column="4" Command="{Binding Operation}" CommandParameter="sin(x)" Style="{StaticResource OperationButton}" />
+        <Button Content="log(x)" Grid.Row="5" Grid.Column="5" Command="{Binding Operation}" CommandParameter="log(x)" Style="{StaticResource OperationButton}" />
+        <Button Content="4" Grid.Row="2" Command="{Binding Number}" CommandParameter="4" Style="{StaticResource NormalButton}" />
+        <Button Content="5" Grid.Row="2" Grid.Column="1" Command="{Binding Number}" CommandParameter="5" Style="{StaticResource NormalButton}" />
+        <Button Content="6" Grid.Row="2" Grid.Column="2" Command="{Binding Number}" CommandParameter="6" Style="{StaticResource NormalButton}"/>
+        <Button Content="-" Grid.Row="2" Grid.Column="3" Command="{Binding Operation}" CommandParameter="-" Style="{StaticResource OperationButton}" />
+        <Button Content="1" Grid.Row="3" Command="{Binding Number}" CommandParameter="1" Style="{StaticResource NormalButton}" />
+        <Button Content="2" Grid.Row="3" Grid.Column="1" Command="{Binding Number}" CommandParameter="2" Style="{StaticResource NormalButton}" />
+        <Button Content="3" Grid.Row="3" Grid.Column="2" Command="{Binding Number}" CommandParameter="3" Style="{StaticResource NormalButton}"/>
+        <Button Content="*" Grid.Row="3" Grid.Column="3" Command="{Binding Operation}" CommandParameter="*" Style="{StaticResource OperationButton}" />
+        <Button Content="/" Grid.Row="3" Grid.Column="4" Command="{Binding Operation}" CommandParameter="/" Style="{StaticResource OperationButton}" />
+        <Button Content="0" Grid.Row="4" Command="{Binding Number}" CommandParameter="0" Style="{StaticResource NormalButton}" />
+        <Button Content="." Grid.Row="4" Grid.Column="1" Command="{Binding Point}" Style="{StaticResource NormalButton}" />
+        <Button Content="+/-" Grid.Row="4" Grid.Column="2" Command="{Binding Sign}" Style="{StaticResource NormalButton}"/>
+        <Button Content="=" Grid.Row="4" Grid.Column="3" Command="{Binding Play}" Style="{StaticResource OperationButton}" />
+        <Button Content="RESET" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Command="{Binding Reset}" CommandParameter="*" Style="{StaticResource NormalButton}" />
+        <TextBlock TextWrapping="Wrap" Text="{Binding Value}" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+    </Grid>
+</Window>
